@@ -26,4 +26,7 @@ pip install -r requirements.txt
 python app.py
 
 
-## Dataset Link: https://www.kaggle.com/datasets/arbethi/diabetic-retinopathy-level-detection?select=preprocessed+dataset
+
+
+
+
