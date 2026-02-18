@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction | DR Detection System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prediction.css') }}">
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">DR Detection System</div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+
+<!-- Welcome -->
+<section class="welcome-section">
+    <h2>Welcome, {{ name }}</h2>
+    <p>Upload a retinal fundus image to analyze diabetic retinopathy stage</p>
+</section>
+
+<!-- Upload Section -->
+<section class="upload-section">
+
+    <div class="upload-card">
+
+        <h3>Upload Retina Image</h3>
+
+        <form action="/prediction" method="POST" enctype="multipart/form-data">
+
+            <div class="upload-area" id="upload-area">
+                <input type="file" name="file" id="fileInput" hidden required>
+
+                <div class="upload-content">
+                    <p>Drag & Drop Image Here</p>
+                    <span>or</span>
+                    <button type="button" onclick="document.getElementById('fileInput').click();" class="browse-btn">
+                        Browse File
+                    </button>
+                </div>
+
+                <img id="preview" class="preview-image" style="display:none;">
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="analyze-btn">Analyze</button>
+                <button type="reset" class="reset-btn">Reset</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% if prediction %}
+<section class="result-section">
+
+    <div class="result-card">
+
+        <div class="result-image">
+            <img src="{{ uploaded_image }}">
+        </div>
+
+        <div class="result-details">
+            <h3>Prediction Result</h3>
+
+            <div class="result-badge {{ prediction }}">
+                {{ prediction }}
+            </div>
+
+            {% if confidence %}
+            <div class="confidence-wrapper">
+                <p>Confidence: {{ confidence }}%</p>
+                <div class="confidence-bar">
+                    <div class="confidence-fill" data-confidence="{{ confidence }}"></div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</section>
+{% endif %}
+
+</body>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const uploadArea = document.getElementById("upload-area");
+const fileInput = document.getElementById("fileInput");
+const preview = document.getElementById("preview");
+
+uploadArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    uploadArea.classList.add("dragover");
+});
+
+uploadArea.addEventListener("dragleave", () => {
+    uploadArea.classList.remove("dragover");
+});
+
+uploadArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    fileInput.files = e.dataTransfer.files;
+    displayPreview(e.dataTransfer.files[0]);
+});
+
+fileInput.addEventListener("change", () => {
+    displayPreview(fileInput.files[0]);
+});
+
+function displayPreview(file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = "block";
+    }
+    reader.readAsDataURL(file);
+}
+
+/* Confidence Bar Animation */
+const fill = document.querySelector(".confidence-fill");
+if(fill){
+    let value = fill.getAttribute("data-confidence");
+    fill.style.width = value + "%";
+}
+
+});
+</script>
+
+</html>

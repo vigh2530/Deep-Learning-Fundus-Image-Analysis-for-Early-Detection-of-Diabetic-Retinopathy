@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetic Retinopathy Detection System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/home.css') }}">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="logo">DR Detection System</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/register">Register</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>AI-Based Diabetic Retinopathy Detection</h1>
+        <p>
+            Early screening and intelligent analysis of retinal fundus images 
+            using deep learning for accurate disease classification.
+        </p>
+        <a href="/login" class="hero-btn">Get Started</a>
+    </section>
+
+    <!-- Image Comparison Section -->
+    <section class="main-section">
+        <h2 class="section-title">Retinal Condition Comparison</h2>
+
+        <div class="image-container">
+            <div class="image-box">
+                <h3>Normal Eye</h3>
+                <img src="{{ url_for('static', filename='images/normalEye.png') }}" alt="Normal Eye">
+            </div>
+
+            <div class="image-box">
+                <h3>Diabetic Retinopathy</h3>
+                <img src="{{ url_for('static', filename='images/diebeticRatinopathy.png') }}" alt="Diabetic Retinopathy">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h2 class="section-title">Project Overview</h2>
+
+        <div class="about-content">
+
+            <div class="card">
+                <h3>Problem</h3>
+                <p>
+                    Diabetic Retinopathy is a progressive complication of diabetes 
+                    that damages retinal blood vessels and may lead to vision loss 
+                    if not detected at an early stage.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Solution</h3>
+                <p>
+                    This system leverages the Xception Convolutional Neural Network 
+                    to analyze retinal fundus images and classify disease severity 
+                    levels with high precision, enabling timely medical intervention.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            &copy; 2024 Diabetic Retinopathy Detection System. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>

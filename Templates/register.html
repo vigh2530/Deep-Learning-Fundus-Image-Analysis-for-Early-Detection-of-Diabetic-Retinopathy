@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | DR Detection System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="logo">Diabetic Retinopathy Detection</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+
+    <!-- Register Section -->
+    <section class="register-section">
+
+        <div class="register-card">
+
+            <h2>Create Account</h2>
+            <p class="subtitle">Register to access retinal image analysis system</p>
+
+            <form action="/register" method="POST">
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="Enter your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="password-wrapper">
+                        <input 
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a strong password"
+                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+                            title="Password must be at least 8 characters long and include uppercase, lowercase and number"
+                            required>
+                        <span class="toggle-btn" onclick="togglePassword()">Show</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="register-btn">Register</button>
+
+            </form>
+
+            <p class="login-link">
+                Already have an account?
+                <a href="/login">Sign In</a>
+            </p>
+
+        </div>
+
+    </section>
+
+<script>
+function togglePassword() {
+    const passwordField = document.getElementById("password");
+    const toggleBtn = document.querySelector(".toggle-btn");
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleBtn.textContent = "Hide";
+    } else {
+        passwordField.type = "password";
+        toggleBtn.textContent = "Show";
+    }
+}
+</script>
+
+</body>
+</html>

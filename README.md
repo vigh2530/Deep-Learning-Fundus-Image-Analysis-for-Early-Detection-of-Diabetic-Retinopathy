@@ -1,2 +1,1 @@
 # Deep-Learning-Fundus-Image-Analysis-for-Early-Detection-of-Diabetic-Retinopathy
-Deep Learning Fundus Image Analysis for Early Detection of Diabetic Retinopathy is an AI-based medical imaging system that uses convolutional neural networks to analyze retinal fundus images. It automatically detects abnormalities and classifies disease stages, enabling early diagnosis, faster treatment, &amp; helping prevent vision loss  db patients.
